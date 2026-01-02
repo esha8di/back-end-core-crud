@@ -6,19 +6,20 @@ import { createBrowserRouter, RouterProvider } from 'react-router';
 import Userdetails from './component/Userdetails/Userdetails.jsx';
 import Users from './component/Users/Users.jsx';
 import Updateprofile from './component/Updateprofile/Updateprofile.jsx';
+import Root from './Root/Root.jsx';
+import Home from './component/Home/Home.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>,
+    element: <Root></Root>,
     children:[
       {
         index:true,
-        Component:Users
-
+        Component:Users,
       },
-      {
-        path:'/users/:id',
+ {
+         path:'/users/:id',
         loader:({params})=>fetch(`http://localhost:3000/users/${params.id}`),
         Component: Userdetails,
       },
