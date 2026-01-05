@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from "react";
 import { useLoaderData } from "react-router";
 import { Authcontext } from "../../context/Authcontext";
+import Swal from "sweetalert2";
 
 const Productdetails = () => {
   const theproduct = useLoaderData();
@@ -15,7 +16,7 @@ const Productdetails = () => {
 
   const onClickModal = () => {
     modalRef.current.showModal();
-  };
+  }
 
   const handleform = (e) =>{
     e.preventDefault()
@@ -44,12 +45,21 @@ const Productdetails = () => {
     })
     .then(res => res.json())
     .then(data=>{
-        console.log(data);
+       console.log( "data" , data)
+
+       if(data.insertedId){
+
+        Swal.fire("bids are added!");
+        modalRef.current.close();
+
+       }
+      
+           
     })
   }
   return (
     <div>
-      <button onClick={onClickModal}>Show bid</button>
+      <button onClick={onClickModal}>Add Bid</button>
 
       {/* Open the modal using document.getElementById('ID').showModal() method */}
       {/* <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>open modal</button> */}
@@ -87,7 +97,7 @@ const Productdetails = () => {
               defaultValue={user?.email}
                type="email" name="email" id="" />
               {/* if there is a button in form, it will close the modal */}
-              <button className="btn">Bid</button>
+              <button  className="btn">Bid</button>
             </form>
           </div>
         </div>
