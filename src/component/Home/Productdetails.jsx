@@ -24,7 +24,7 @@ const Productdetails = () => {
 
     const p_name=form.product_name.value;
     const p_id=form.product_id.value;
-    const bid_price=form.bid.value;
+    const bid_price=Number(form.bid.value);
     const email=form.email.value;
 
     const formData ={
